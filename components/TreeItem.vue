@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from 'vue'
+
 
 const props = defineProps({
     model: Object
@@ -17,7 +17,6 @@ function toggle() {
 function changeType() {
     if (!isFolder.value) {
         props.model.children = []
-        addChild()
         isOpen.value = true
     }
 }
@@ -25,10 +24,10 @@ function changeType() {
 function addChild() {
     changeType()
     props.model.children.push({ name: 'new stuff' })
+    isOpen.value = true
 }
 function removeChild(e) {
-    console.log(props.model)
-    console.log(props)
+    // console.log(props.model)
     emit('remove', e, props.model)
 
     // props.model.pop(this.model.children.length - 1)
@@ -55,7 +54,8 @@ const emit = defineEmits(['remove'])
         A component can recursively render itself using its
         "name" option (inferred from filename if using SFC)
       -->
-            <TreeItem class="item ml-6" v-for="model in model.children" :model="model">
+            <TreeItem class="item ml-6" v-for="model in model.children" @remove="emit('remove', $event, props.model)"
+                :model="model">
             </TreeItem>
 
         </ul>
