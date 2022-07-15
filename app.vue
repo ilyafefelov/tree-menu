@@ -41,7 +41,7 @@ function removeItem() {
   // console.log(p)
   // console.log(args)
   // console.log("found:", findNested(treeData.value, 'name', arguments[1].name))
-  console.log("found:", findKey(treeData.value, arguments[1].name))
+  console.log("found:", findKey(treeData.value, arguments[1].id))
 
 
 
@@ -69,7 +69,10 @@ function removeItem() {
 function findKey(obj, target) {
   const fnd = obj => {
     for (const [k, v] of Object.entries(obj)) {
-      if (v === target) return [k, v, Object.entries(obj)];
+      if (v === target) {
+
+        return [k, v, Object.entries(obj)];
+      }
       if (typeof v === 'object') {
         const f = fnd(v);
         if (f) return f;
