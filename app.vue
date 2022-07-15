@@ -28,10 +28,13 @@ const treeData = ref({
   ]
 })
 
-function removeItem(e, args) {
+function removeItem() {
   // console.log(arguments)
+  console.log("PARENT")
+  console.log(arguments)
   // console.log(e)
-  console.log(args)
+  // console.log(p)
+  // console.log(args)
 
 }
 
@@ -39,7 +42,7 @@ function removeItem(e, args) {
 
 <template>
   <ul class="p-16">
-    <TreeItem class="item" @remove="removeItem" :model="treeData"></TreeItem>
+    <TreeItem class="item" @removeItem="removeItem" :model="treeData"></TreeItem>
   </ul>
   <pre class="bg-blue-100">
     {{ treeData }}
