@@ -62,7 +62,7 @@ const emit = defineEmits(['removeT', 'removeItem', 'removeThis'])
             <div class="add p-1 bg-blue-100 m-1 hover:bg-blue-200 rounded-xl" @click="addChild">add child</div>
             <div class="add p-1 bg-blue-100 m-1 hover:bg-blue-200 rounded-xl" @click="removeChild($event)">
                 remove child</div>
-            <input v-model="description" placeholder="отредактируй меня">
+            <input v-model="description" placeholder="add descrption">
             <p>{{ description }}</p>
             <button class="bg-yellow-100 border m-2 p-1" @click="addDesc">add desc</button>
             <div>{{ model.description }}</div>
