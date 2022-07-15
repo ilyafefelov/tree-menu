@@ -32,6 +32,7 @@ function removeItem(e, args) {
   console.log(arguments)
   console.log(e)
   console.log(args)
+
 }
 
 </script>
