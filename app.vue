@@ -32,6 +32,45 @@ const treeData = ref({
   ],
 });
 
+function als(e, p) {
+  // console.log(e);
+
+
+  let value = e.id.split('-');
+
+  if (value.length > 1) {
+    value.pop()
+    value = value.join('-')
+  } else {
+    value = 'root'
+  }
+
+  // console.log("parent is:", value);
+
+  let parent = findParent(treeData.value, "id", value)
+
+  console.log("parent", parent)
+  console.log("middle", e)
+  console.log("child", e.children[0])
+  alert(`Parent:${parent.name} \nMiddle: ${e.name} \n newChild: ${e.children[0].name}`);
+
+}
+function findParent(obj, key, value) {
+  if (obj.id == value) {
+    // console.log("foundPArent:", obj);
+    return obj;
+  }
+  if (obj.children) {
+    for (let i = 0; i < obj.children.length; i++) {
+      if (obj.children[i].id == value) {
+        // console.log("foundPArent:", obj.children[i]);
+        return obj.children[i];
+      }
+      findParent(obj.children[i], key, value);
+    }
+  }
+}
+
 function removeItem() {
   findKey(treeData.value, "id", arguments[1].id);
 }
@@ -61,8 +100,10 @@ function findKey(obj, key, value) {
       to="https://github.com/ilyafefelov/tree-menu">
       CODE
     </nuxt-link>
-    <ul class="p-16">
-      <TreeItem class="item" @removeItem="removeItem" :model="treeData"></TreeItem>
+    <ul class="p-16 bg-green-200">
+      <TreeItem v-slot="slotProps" class="item" @alz="als" @removeItem="removeItem" :model="treeData"
+        :modelname="treeData.name">
+      </TreeItem>
     </ul>
     <pre class="bg-blue-100">
       {{ treeData }}
