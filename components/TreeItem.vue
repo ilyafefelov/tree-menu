@@ -26,21 +26,29 @@ function addChild() {
     changeType()
     props.model.children.push({ name: 'new stuff' })
 }
-function removeChild() {
-    props.model.children.pop(this.model.children.length - 1)
+function removeChild(e) {
+    console.log(props.model)
+    console.log(props)
+    emit('remove', e, props.model)
+
+    // props.model.pop(this.model.children.length - 1)
 }
+
+const emit = defineEmits(['remove'])
+
 </script>
 
 <template>
     <div class="font-mono ">
-        <div class="flex flex-row items-center">
+        <div class="flex flex-row items-center border w-fit">
             <div :class="{ bold: isFolder }" @click.capture="toggle" class="flex flex-row items-center">
                 {{ model.name }}
                 <span v-if="isFolder">[{{ isOpen ? '-' : '+' }}]</span>
 
             </div>
             <div class="add p-1 bg-blue-100 m-1 hover:bg-blue-200 rounded-xl" @click="addChild">add child</div>
-            <div class="add p-1 bg-blue-100 m-1 hover:bg-blue-200 rounded-xl" @click="removeChild">remove child</div>
+            <div class="add p-1 bg-blue-100 m-1 hover:bg-blue-200 rounded-xl" @click="removeChild($event)">
+                remove child</div>
         </div>
         <ul v-show="isOpen" v-if="isFolder">
             <!--

@@ -27,11 +27,18 @@ const treeData = ref({
     }
   ]
 })
+
+function removeItem(e, args) {
+  console.log(arguments)
+  console.log(e)
+  console.log(args)
+}
+
 </script>
 
 <template>
   <ul class="p-16">
-    <TreeItem class="item" :model="treeData"></TreeItem>
+    <TreeItem class="item" @remove="removeItem" :model="treeData"></TreeItem>
   </ul>
   <pre class="bg-blue-100">
     {{ treeData }}
