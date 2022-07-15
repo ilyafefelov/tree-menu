@@ -59,7 +59,8 @@ const emit = defineEmits(['removeT', 'removeItem', 'removeThis'])
                 <span v-if="isFolder">[{{ isOpen ? '-' : '+' }}]</span>
 
             </div>
-            <div class="add p-1 bg-blue-100 m-1 hover:bg-blue-200 rounded-xl" @click="addChild">add child</div>
+            <div class="add p-1 bg-blue-100 m-1 hover:bg-blue-200 rounded-xl" v-if="model.name !== 'My Tree'" @click="
+            addChild">add child</div>
             <div class="add p-1 bg-blue-100 m-1 hover:bg-blue-200 rounded-xl" @click="removeChild($event)">
                 remove child</div>
             <input v-model="description" placeholder="add descrption">
