@@ -78,7 +78,7 @@ const emit = defineEmits([
                 @click="askToRemove">
                 delete ?
             </div>
-            <div v-if="model.name !== 'My Tree'" class="p-1 bg-red-300 m-1 hover:bg-blue-200 rounded-xl"
+            <div v-if="model.name !== 'My Tree' && showDelete" class="p-1 bg-red-300 m-1 hover:bg-blue-200 rounded-xl"
                 @click="removeChild($event)">
                 remove child
             </div>
