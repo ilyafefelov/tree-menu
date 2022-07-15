@@ -59,7 +59,7 @@ const emit = defineEmits(['removeT', 'removeItem', 'removeThis'])
 
 <template>
     <div class="font-mono ">
-        <div class="flex flex-row items-center border w-fit">
+        <div class="flex flex-row items-center border w-fit pl-2">
             <div :class="{ bold: isFolder }" @click.capture="toggle" class="flex flex-row items-center">
                 {{ model.name }}
                 <span v-if="isFolder">[{{ isOpen ? '-' : '+' }}]</span>
@@ -70,7 +70,7 @@ const emit = defineEmits(['removeT', 'removeItem', 'removeThis'])
             <div class="p-1 bg-red-300 m-1 hover:bg-blue-200 rounded-xl" @click="askToRemove">delete ? </div>
             <div v-if="showDelete" class="p-1 bg-red-300 m-1 hover:bg-blue-200 rounded-xl" @click="removeChild($event)">
                 remove child</div>
-            <input v-model="description" placeholder="add descrption">
+            <input class="px-2 border" v-model="description" placeholder="add descrption">
             <p>{{ description }}</p>
             <button class="bg-yellow-100 border m-2 p-1" @click="addDesc">add desc</button>
             <div>{{ model.description }}</div>
