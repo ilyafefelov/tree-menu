@@ -107,12 +107,12 @@ function findKey(obj, key, value) {
       to="https://github.com/ilyafefelov/tree-menu">
       CODE
     </nuxt-link>
-    <ul class="p-16 bg-green-200">
+    <ul class="p-16 my-8 bg-green-200">
       <TreeItem v-slot="slotProps" class="item" @alz="als" @removeItem="removeItem" :model="treeData"
         :modelname="treeData.name">
       </TreeItem>
     </ul>
-    <pre class="bg-blue-100">
+    <pre class="bg-blue-100 p-10">
       {{ treeData }}
     </pre>
   </div>
