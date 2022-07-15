@@ -9,6 +9,7 @@ const props = defineProps({
 
 
 const description = ref()
+const showDelete = ref(false)
 
 const isOpen = ref(false)
 const isFolder = computed(() => {
@@ -39,6 +40,11 @@ function addChild() {
     props.model.children.unshift({ name: 'new stuff', id })
     isOpen.value = true
 }
+
+function askToRemove() {
+    showDelete.value = !showDelete.value
+}
+
 function removeChild(e) {
     emit('removeItem', e, props.model)
 }
@@ -61,7 +67,8 @@ const emit = defineEmits(['removeT', 'removeItem', 'removeThis'])
             </div>
             <div class="add p-1 bg-blue-100 m-1 hover:bg-blue-200 rounded-xl" v-if="model.name !== 'My Tree'" @click="
             addChild">add child</div>
-            <div class="add p-1 bg-blue-100 m-1 hover:bg-blue-200 rounded-xl" @click="removeChild($event)">
+            <div class="p-1 bg-red-300 m-1 hover:bg-blue-200 rounded-xl" @click="askToRemove">delete ? </div>
+            <div v-if="showDelete" class="p-1 bg-red-300 m-1 hover:bg-blue-200 rounded-xl" @click="removeChild($event)">
                 remove child</div>
             <input v-model="description" placeholder="add descrption">
             <p>{{ description }}</p>
