@@ -5,12 +5,23 @@ const props = defineProps({
     model: Object
 })
 
+
+
+
+const description = ref()
+
 const isOpen = ref(false)
 const isFolder = computed(() => {
     return props.model.children && props.model.children.length
 })
 
 
+function addDesc() {
+    console.log(description.value)
+    props.model.description = description.value
+    description.value = ''
+
+}
 function toggle() {
     isOpen.value = !isOpen.value
 }
@@ -51,6 +62,10 @@ const emit = defineEmits(['removeT', 'removeItem', 'removeThis'])
             <div class="add p-1 bg-blue-100 m-1 hover:bg-blue-200 rounded-xl" @click="addChild">add child</div>
             <div class="add p-1 bg-blue-100 m-1 hover:bg-blue-200 rounded-xl" @click="removeChild($event)">
                 remove child</div>
+            <input v-model="description" placeholder="отредактируй меня">
+            <p>{{ description }}</p>
+            <button class="bg-yellow-100 border" @click="addDesc">add desc</button>
+            <div>{{ model.description }}</div>
         </div>
         <ul v-show="isOpen" v-if="isFolder">
 
