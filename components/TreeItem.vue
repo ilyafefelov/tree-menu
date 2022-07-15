@@ -25,7 +25,7 @@ function changeType() {
 function addChild() {
     changeType()
     let id = `${props.model.id}-${props.model.children.length + 1}`
-    props.model.children.push({ name: 'new stuff', id })
+    props.model.children.unshift({ name: 'new stuff', id })
     isOpen.value = true
 }
 function removeChild(e) {

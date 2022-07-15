@@ -1,8 +1,3 @@
-<!--
-A nested tree component that recursively renders itself.
-You can double click on an item to turn it into a folder.
--->
-
 <script setup>
 
 const treeData = ref({
@@ -56,12 +51,18 @@ function findKey(obj, key, value) {
 </script>
 
 <template>
-  <ul class="p-16">
-    <TreeItem class="item" @removeItem="removeItem" :model="treeData"></TreeItem>
-  </ul>
-  <pre class="bg-blue-100">
-    {{ treeData }}
-  </pre>
+  <div class="pt-10">
+    <nuxt-link target="_blank" class="bg-blue-100 rounded w-fit hover:bg-blue-200 p-2 ml-16 border"
+      to="https://github.com/ilyafefelov/tree-menu">
+      CODE
+    </nuxt-link>
+    <ul class="p-16">
+      <TreeItem class="item" @removeItem="removeItem" :model="treeData"></TreeItem>
+    </ul>
+    <pre class="bg-blue-100">
+      {{ treeData }}
+    </pre>
+  </div>
 </template>
 
 <style>
