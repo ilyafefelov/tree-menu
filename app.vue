@@ -32,39 +32,46 @@ const treeData = ref({
   ],
 });
 
-function als(e, p) {
+const createdParent = ref()
+
+async function als(e, p) {
   // console.log(e);
 
-
-  let value = e.id.split('-');
+  let value = e.id.split("-");
 
   if (value.length > 1) {
-    value.pop()
-    value = value.join('-')
+    value.pop();
+    value = value.join("-");
   } else {
-    value = 'root'
+    value = "root";
   }
 
-  // console.log("parent is:", value);
+  // console.log("parent is:", await findParent(treeData.value, "id", value));
 
-  let parent = findParent(treeData.value, "id", value)
+  await findParent(treeData.value, "id", value);
 
-  console.log("parent", parent)
-  console.log("middle", e)
-  console.log("child", e.children[0])
-  alert(`Parent:${parent.name} \nMiddle: ${e.name} \n newChild: ${e.children[0].name}`);
-
+  let prr = createdParent.value;
+  console.log("prr", prr.name);
+  console.log("middle", e.name);
+  console.log("child", e.children[0].name);
+  alert(
+    `Parent:${prr.name} \nMiddle: ${e.name} \n newChild: ${e.children[0].name}`
+  );
 }
 function findParent(obj, key, value) {
   if (obj.id == value) {
-    // console.log("foundPArent:", obj);
+    console.log("foundPArent1:", obj);
+    createdParent.value = obj;
     return obj;
   }
   if (obj.children) {
     for (let i = 0; i < obj.children.length; i++) {
       if (obj.children[i].id == value) {
-        // console.log("foundPArent:", obj.children[i]);
-        return obj.children[i];
+        let parent = obj.children[i]
+        console.log("foundPArent2:", parent);
+        createdParent.value = parent;
+
+        return parent;
       }
       findParent(obj.children[i], key, value);
     }
