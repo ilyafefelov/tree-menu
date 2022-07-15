@@ -33,6 +33,9 @@ const treeData = ref({
   <ul class="p-16">
     <TreeItem class="item" :model="treeData"></TreeItem>
   </ul>
+  <pre class="bg-blue-100">
+    {{ treeData }}
+  </pre>
 </template>
 
 <style>
