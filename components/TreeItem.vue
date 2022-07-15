@@ -64,7 +64,7 @@ const emit = defineEmits(['removeT', 'removeItem', 'removeThis'])
                 remove child</div>
             <input v-model="description" placeholder="отредактируй меня">
             <p>{{ description }}</p>
-            <button class="bg-yellow-100 border" @click="addDesc">add desc</button>
+            <button class="bg-yellow-100 border m-2 p-1" @click="addDesc">add desc</button>
             <div>{{ model.description }}</div>
         </div>
         <ul v-show="isOpen" v-if="isFolder">
