@@ -32,6 +32,11 @@ function addChild() {
     let id = `${props.model.id}-${props.model.children.length + 1}`;
     props.model.children.unshift({ name: "new stuff", id });
     isOpen.value = true;
+    alert(
+        `here: ${props.model.name}
+        new: ${props.model.children[0].name}
+        `
+    )
 }
 
 function askToRemove() {
