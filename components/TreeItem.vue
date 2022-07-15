@@ -10,6 +10,7 @@ const isFolder = computed(() => {
     return props.model.children && props.model.children.length
 })
 
+
 function toggle() {
     isOpen.value = !isOpen.value
 }
@@ -23,7 +24,8 @@ function changeType() {
 
 function addChild() {
     changeType()
-    props.model.children.push({ name: 'new stuff' })
+    let id = `${props.model.id}-${props.model.children.length + 1}}`
+    props.model.children.push({ name: 'new stuff', id })
     isOpen.value = true
 }
 function removeChild(e) {
