@@ -4,8 +4,6 @@ You can double click on an item to turn it into a folder.
 -->
 
 <script setup>
-import { ref } from 'vue'
-import TreeItem from './TreeItem.vue'
 
 const treeData = ref({
   name: 'My Tree',
@@ -32,7 +30,7 @@ const treeData = ref({
 </script>
 
 <template>
-  <ul>
+  <ul class="p-16">
     <TreeItem class="item" :model="treeData"></TreeItem>
   </ul>
 </template>
@@ -42,6 +40,7 @@ const treeData = ref({
   cursor: pointer;
   line-height: 1.5;
 }
+
 .bold {
   font-weight: bold;
 }
