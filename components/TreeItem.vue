@@ -29,8 +29,9 @@ function addChild() {
 
 <template>
     <div class="bg-red-200 font-mono">
-        <div :class="{ bold: isFolder }" @click="toggle" @dblclick="changeType">
-            {{ model.name }}<div class="add" @click="addChild">/add child/</div>
+        <div :class="{ bold: isFolder }" @click="toggle" @dblclick="changeType" class="flex flex-row items-center">
+            {{ model.name }}
+            <div class="add p-1 bg-blue-100 m-1 hover:bg-blue-200 rounded-xl" @click="addChild">/add child/</div>
             <span v-if="isFolder">[{{ isOpen ? '-' : '+' }}]</span>
 
         </div>
