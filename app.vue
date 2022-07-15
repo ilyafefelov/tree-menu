@@ -7,6 +7,7 @@ You can double click on an item to turn it into a folder.
 
 const treeData = ref({
   name: 'My Tree',
+  id: 'root',
   children: [
     { name: 'hello', id: '1' },
     { name: 'world', id: '2' },
@@ -31,57 +32,26 @@ const treeData = ref({
 })
 
 function removeItem() {
-  // console.log(arguments)
-  console.log("PARENT")
-  console.log(arguments[1])
-  // props.model.children.splice(props.model.children.findIndex(({ name }) => name == props.model.name), 1);
-  // console.log(Object.values(treeData.value))
-  // treeData.value.findIndex((n) => n == arguments[1].name)
-  // console.log(e)
-  // console.log(p)
-  // console.log(args)
-  // console.log("found:", findNested(treeData.value, 'name', arguments[1].name))
-  console.log("found:", findKey(treeData.value, arguments[1].id))
-
-
-
-
+  findKey(treeData.value, 'id', arguments[1].id)
 }
+function findKey(obj, key, value) {
+  // console.log(obj)
 
-// function findNested(obj, key, value) {
-//   // Base case
-//   if (obj[key] === value) {
-//     return obj;
-//   } else {
-//     // Recursive case
-//     // console.log(obj['children'])
-//     if (obj['children']) {
-//       // console.log(obj)
-//       for (let i = 0; i < obj['children'].length; i++) {
-//         if (obj['children'][i][key] === value) {
-//           return obj['children'][i];
-//         }
-//       }
-//     }
-//   }
-// }
-
-function findKey(obj, target) {
-  const fnd = obj => {
-    for (const [k, v] of Object.entries(obj)) {
-      if (v === target) {
-
-        return [k, v, Object.entries(obj)];
+  if (obj.id == value) {
+    return obj
+  }
+  if (obj.children) {
+    for (let i = 0; i < obj.children.length; i++) {
+      if (obj.children[i].id == value) {
+        console.log(obj.children[i])
+        console.log(i)
+        obj.children.splice(i, 1)
+        return obj.children[i]
       }
-      if (typeof v === 'object') {
-        const f = fnd(v);
-        if (f) return f;
-      }
+      findKey(obj.children[i], key, value)
     }
   }
-  return fnd(obj);
 }
-
 
 </script>
 

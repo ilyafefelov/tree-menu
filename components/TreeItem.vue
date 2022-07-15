@@ -24,20 +24,15 @@ function changeType() {
 
 function addChild() {
     changeType()
-    let id = `${props.model.id}-${props.model.children.length + 1}}`
+    let id = `${props.model.id}-${props.model.children.length + 1}`
     props.model.children.push({ name: 'new stuff', id })
     isOpen.value = true
 }
 function removeChild(e) {
-    // console.log(props.model)
-    // console.log(e)
     emit('removeItem', e, props.model)
 }
 
 function removeIt(e, p) {
-    // console.log(arguments)
-    // console.log(p)
-    // console.log(e)
     emit('removeItem', e, p)
 }
 
@@ -58,10 +53,7 @@ const emit = defineEmits(['removeT', 'removeItem', 'removeThis'])
                 remove child</div>
         </div>
         <ul v-show="isOpen" v-if="isFolder">
-            <!--
-        A component can recursively render itself using its
-        "name" option (inferred from filename if using SFC)
-      -->
+
             <TreeItem class="item ml-6" v-for="model in model.children" @removeItem="removeIt" :model="model">
             </TreeItem>
 
