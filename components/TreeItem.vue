@@ -27,7 +27,7 @@ function addChild() {
     isOpen.value = true
 }
 function removeChild(e) {
-    // console.log(props.model)
+    console.log(props.model)
     emit('remove', e, props.model)
 
     // props.model.pop(this.model.children.length - 1)
@@ -54,8 +54,7 @@ const emit = defineEmits(['remove'])
         A component can recursively render itself using its
         "name" option (inferred from filename if using SFC)
       -->
-            <TreeItem class="item ml-6" v-for="model in model.children" @remove="emit('remove', $event, props.model)"
-                :model="model">
+            <TreeItem class="item ml-6" v-for="model in model.children" :model="model">
             </TreeItem>
 
         </ul>
